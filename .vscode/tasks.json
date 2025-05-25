@@ -1,0 +1,106 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "C/C++: g++.exe build active file",
+            "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
+            "args": [
+                // "-shared", // Compile as a shared library
+                // "-fPIC", // Position-independent code for shared libraries
+                "-g2",
+                "-O3",
+                "-DNDEBUG",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}_g++.exe",
+                "-D_WIN32_WINNT=0x0501",
+                "-pthread",
+                "-LD:\\cryptolibrary\\lib\\cryptopp\\gcc",
+                "-l:libcryptopp.a",
+                "-ID:\\cryptolibrary\\include",
+                "-Wall",
+            ],
+            "options": {
+                "cwd": "C:\\msys64\\mingw64\\bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
+        },
+        {
+            "type": "shell",
+            "label": "C/C++: clang.exe build shared library",
+            "command": "C:\\msys64\\mingw64\\bin\\clang++.exe",
+            "args": [
+                // "-shared", // Compile as a shared library
+                // "-fPIC", // Position-independent code for shared libraries
+                "-g2",
+                "-O3",
+                "-DNDEBUG",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}_clang.exe",
+                "-lpthread",
+                "-LD:\\cryptolibrary\\lib\\cryptopp\\clang",
+                "-l:libcryptopp.a",
+                "-ID:\\cryptolibrary\\include",
+                "-Wall"
+            ],
+            "options": {
+                "cwd": "C:\\msys64\\mingw64\\bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "compiler: C:\\msys64\\mingw64\\bin\\clang.exe"
+        },
+        {
+            "type": "shell",
+            "label": "C/C++: cl.exe build shared library",
+            "command": "\"C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Auxiliary/Build/vcvars64.bat\" && cl",
+            "args": [
+                // "/LD", // Compile as a DLL (no change for cl.exe as it doesn't produce .so files)
+                "/Zc:wchar_t",
+                "/Zc:inline",
+                "/Gm-",
+                "/Gd",
+                "/FC",
+                "/MTd",
+                "/GS",
+                "/Oi",
+                "/W4",
+                "/Zi",
+                "/nologo",
+                "/EHsc",
+                "/ID:\\cryptolibrary\\include",
+                "${file}",
+                "/link",
+                "/OUT:${fileDirname}\\${fileBasenameNoExtension}_cl.exe", 
+                "/LIBPATH:D:\\cryptolibrary\\lib\\cryptopp\\msvc",
+                "cryptlib.lib",
+                "/MACHINE:X64"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "compiler: cl.exe"
+        }
+    ]
+}
